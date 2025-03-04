@@ -20,7 +20,7 @@
       </div>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-8 w-full container mx-auto">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-8 px-6 w-full container mx-auto">
   <DetailsCard
     img="/bag1.png"
     bgColor="bg-gradient-to-r from-gray-200 to-gray-100"
