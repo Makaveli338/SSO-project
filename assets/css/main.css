@@ -1,0 +1,19 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.btn-primary {
+  @apply bg-[#0047BA] py-[10px] px-4 rounded-[999px] mt-3 text-white;
+}
+
+.btn-secondary {
+  @apply py-[10px] px-4 bg-[#0047BA1F] text-[#0047BA] font-medium rounded-[999px];
+}
+
+.link {
+    @apply hover:text-[#0047BA] hover:underline duration-300 ease-in-out;
+}
+
+.link.active {
+    @apply text-[#0047BA] font-bold
+}
