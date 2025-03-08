@@ -6,7 +6,7 @@
   </head>
   <div>
 
-    <Header :isLoggedIn="true " />
+    <Header />
 
     <div class="container mx-auto py-8 flex flex-col items-center text-center">
       <p class="font-semibold text-6xl">Welcome to pike store</p>
