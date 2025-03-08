@@ -113,5 +113,11 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 
+const isLoggedIn = ref(false);
+
+onMounted(() => {
+  isLoggedIn.value = !!localStorage.getItem('access_token');
+});
 </script>

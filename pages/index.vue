@@ -21,7 +21,7 @@
 
     <div class="mx-6">
       <div
-        class="bg-[#DFE6F3] rounded-[12px] py-44 px-20 bg-right bg-cover md:bg-contain bg-no-repeat container mx-auto md:bg-[url('/camper.png')]"
+        class="bg-[#DFE6F3] rounded-[12px] py-44 px-20 bg-right bg-cover md:bg-contain bg-no-repeat container mx-auto md:bg-[url('/camper.png')] mb-10"
       >
         <div class="   relative z-[10]">
           <div class="flex flex-col gap-2">
