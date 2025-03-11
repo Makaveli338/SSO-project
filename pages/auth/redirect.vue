@@ -15,20 +15,22 @@ if (!code.value) {
   console.log("Authorization code:", code.value);
 
   useFetch('/api/exchangecode', {
-    method: 'POST',
-    body: { code: code.value, state: state.value }
-  }).then((response) => {
-    console.log("API Response:", response.data);
-    if (response.data.accessToken) {
-      localStorage.setItem('access_token', response.data.accessToken);
-      router.push('/dashboard');
-    } else {
-      console.error("API did not return access token:", response.data);
-      router.push('/error');
-    }
-  }).catch((error) => {
-    console.error("Error during token exchange:", error);
+  method: 'POST',
+  body: { code, state }
+}).then((response) => {
+  console.log("Raw API Response:", response); // Check what you actually receive
+
+  if (response.data && response.data.accessToken) {
+    console.log("✅ Access token received:", response.data.accessToken);
+    localStorage.setItem('access_token', response.data.accessToken);
+    router.push('/dashboard');
+  } else {
+    console.error(" API did not return access token. Full response:", response.data);
     router.push('/error');
-  });
+  }
+}).catch((error) => {
+  console.error("API Fetch Error:", error);
+  router.push('/error');
+});
 }
 </script>
