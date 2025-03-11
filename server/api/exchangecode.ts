@@ -32,6 +32,7 @@ export default defineEventHandler(async (event) => {
         grant_type: "authorization_code",
       }),
     });
+    
 
     const data = await response.json();
     console.log("🔍 Token Exchange Response:", JSON.stringify(data));

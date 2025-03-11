@@ -34,3 +34,9 @@ if (!code.value) {
 });
 }
 </script>
+
+<template>
+  <div>
+    <h1>Redirecting...</h1>
+  </div>
+</template>
