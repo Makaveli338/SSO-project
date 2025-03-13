@@ -27,6 +27,7 @@ export function getAuthorizationUrl(state) {
       client_secret: clientSecret,
     });
     const response = await axios.post(tokenUrl, params);
+    console.log('1234567',response.data);
     return response.data;
   }
   

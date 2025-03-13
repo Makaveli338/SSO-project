@@ -1,42 +1,53 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
 import { useFetch } from '#app';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+
+// Ensure middleware is properly referenced
+definePageMeta({
+  middleware: ['oauth'], 
+});
 
 const router = useRouter();
 const route = useRoute();
 const code = ref(route.query.code);
 const state = ref(route.query.state);
 
-if (!code.value) {
-  console.error("No authorization code found in URL!");
-  router.push('/error');
-} else {
-  console.log("Authorization code:", code.value);
+const exchangeCode = async () => {
+  if (!code.value) {
+    console.error("❌ No authorization code found in URL!");
+    router.push('/error');
+    return;
+  }
 
-  useFetch('/api/exchangecode', {
-  method: 'POST',
-  body: { code, state }
-}).then((response) => {
-  console.log("Raw API Response:", response); // Check what you actually receive
+  console.log("🔍 Authorization code:", code.value);
 
-  if (response.data && response.data.accessToken) {
-    console.log("✅ Access token received:", response.data.accessToken);
-    localStorage.setItem('access_token', response.data.accessToken);
-    router.push('/dashboard');
-  } else {
-    console.error(" API did not return access token. Full response:", response.data);
+  try {
+    const { data, error } = await useFetch('/api/exchangecode', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: { code: code.value, state: state.value },
+    });
+
+    if (error.value) {
+      console.error("❌ API Error:", error.value);
+      throw new Error(error.value);
+    }
+
+    if (data.value?.access_token) {
+      console.log("✅ Access token received:", data.value.access_token);
+      localStorage.setItem('access_token', data.value.access_token);
+
+      const redirectUrl = new URLSearchParams(window.location.search).get('state') || '/dashboard';
+      window.location.href = redirectUrl;
+    } else {
+      throw new Error("No access token received");
+    }
+  } catch (err) {
+    console.error("❌ API Fetch Error:", err);
     router.push('/error');
   }
-}).catch((error) => {
-  console.error("API Fetch Error:", error);
-  router.push('/error');
-});
-}
-</script>
+};
 
-<template>
-  <div>
-    <h1>Redirecting...</h1>
-  </div>
-</template>
+onMounted(exchangeCode);
+</script>

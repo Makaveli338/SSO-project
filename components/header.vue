@@ -101,9 +101,9 @@
         v-if="!isLoggedIn"
         class="btn-secondary"
       >
-      <NuxtLink href="https://test.sso.pesaflow.com/en/oauth/authorize?response_type=code&client_id=24f2b7cfa592cf8248345a9766493c7e&redirect_uri=http://localhost:3000/auth/redirect&state=dashboard" external>
-          Log in
-        </NuxtLink>
+      <NuxtLink to="https://test.sso.pesaflow.com/en/oauth/authorize?response_type=code&client_id=24f2b7cfa592cf8248345a9766493c7e&redirect_uri=http://localhost:3000/auth/redirect&state=dashboard" external >
+        Log in
+       </NuxtLink>
       </button>
 
       

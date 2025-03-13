@@ -9,7 +9,6 @@ const CLIENT_ID = process.env.CLIENT_ID;
 
 
 export default defineEventHandler((event) => {
-  const state = 'some_random_state'; // You should generate a random state and store it in session or cookies
-  const url = `${authorizationUrl}?response_type=code&client_id=${process.env.CLIENT_ID}&redirect_uri=${redirectUri}&state=${state}`;
+  const url = `${authorizationUrl}?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${redirectUri}`;
   return sendRedirect(event, url);
 });

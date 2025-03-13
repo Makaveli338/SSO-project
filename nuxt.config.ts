@@ -6,8 +6,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'node-server', // Ensure Nitro is set up for a Node.js server
   },
-  modules: [
-    '@nuxtjs/tailwindcss',
-  ],
+  modules: ['@nuxtjs/tailwindcss'],
   compatibilityDate: '2025-03-03',
+  
 });

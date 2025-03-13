@@ -7,5 +7,5 @@
     "pages/**/*",
     "plugins/**/*",
     "nuxt.config.ts"
-  ]
+, "server/exchangecode.ts"  ]
 }
