@@ -1,9 +1,9 @@
 import { defineEventHandler, readBody } from 'h3';
 import axios from 'axios';
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
 // Load environment variables
-// dotenv.config();
+dotenv.config();
 
 // Define the event handler for the middleware
 export default defineEventHandler(async (event) => {
@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
     return { access_token: tokenResponse.data.access_token };
   } catch (error:any) {
     // Log and return an error if the token exchange fails
-    // console.error("❌ OAuth Exchange Error:", error.response?.data || error.message);
+    console.error("❌ OAuth Exchange Error:", error.response?.data || error.message);
     return { success: false, error: 'Failed to exchange code for token' };
   }
 });
